@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Edit</title>
+    <title>Edit Product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>
   <body>
@@ -14,38 +14,28 @@
 require "config.php";
 include 'partials/nav.php';
 
-$user_id = $_GET['id'];
-$sql = sprintf("SELECT * FROM `users` WHERE `id` = %d" , $user_id);
+$product_id = $_GET['sid'];
+$sql = sprintf("SELECT * FROM `products` WHERE `sid` = %d" , $product_id);
 $result = mysqli_query($conn, $sql) or die("Query Unsuccessful");
 
 if(mysqli_num_rows($result)>0){
 while($row = mysqli_fetch_assoc($result)){
 ?>
 
-
-<form action="updatedata.php" method ="POST" >
+<form action="updateproduct.php" method ="POST" >
   <div class="mb-3">
   <div class="form-group">
-        <input type="hidden" name="id" value="<?php echo $row['id'];?>">
-      <label for="inputEmail4">Name</label>
-      <input type="text" class="form-control" name="name"value =" <?php echo $row['name']; ?>">
+        <input type="hidden" name="sid" value="<?php echo $row['sid'];?>">
+      <label for="inputEmail4">Product Name</label>
+      <input type="text" class="form-control" name="pname"value =" <?php echo $row['pname']; ?>">
     </div>
     <div class ="form-group mt-4">
-    <label for="exampleInputEmail1" >Email address</label>
-    <input type="email" class="form-control" name ="email"value ="<?php echo $row['email'];  ?>">
+    <label for="exampleInputEmail1" >Price</label>
+    <input type="number" class="form-control" name ="price"value ="<?php echo $row['price'];  ?>">
     </div>
 
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password"value ="<?php echo $row['password'];  ?>" name ="password">
-  </div>
-  <div class="form-group mb-3">
-  <label class="form-label" for="phone">Phone number</label>
-  <input type="text" id="phone" name ="phone" value="<?php echo $row['phone'];  ?>"/>
- 
-</div>
   <div class="d-flex justify-content-center">
-  <button type="submit" name = "edit" class="btn btn-primary">Edit</button>
+  <button type="submit" name = "editproduct" class="btn btn-primary">Edit Info</button>
 </div>
 
 </form>

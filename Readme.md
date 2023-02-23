@@ -1,0 +1,1 @@
+Create CRUD for products (simply cope paste) [inside same project]
