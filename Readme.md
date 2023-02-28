@@ -8,3 +8,5 @@ create a page where product shows as dropdown
 and at that page shows product id and user id.
 4th task
 show the order details in next page
+5th task
+Display Product name instead of Product ID

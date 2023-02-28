@@ -33,20 +33,20 @@ if (!isset($_SESSION['email'])) {
       <thead>
         <tr>
           <th scope="col">Order ID</th>
-          <th scope="col">Product ID</th>
+          <th scope="col">Product Name</th>
           <th scope="col">User ID</th>
 
         </tr>
       </thead>
       <tbody>
         <?php 
-          $sql = "SELECT * FROM `orders` WHERE user_id = '$user_id' ";
+          $sql = "SELECT o.oid , p.pname , o.user_id FROM orders o INNER JOIN products p ON o.product_id = p.sid WHERE user_id = '$user_id' ";
           $result = mysqli_query($conn, $sql);
           $id = 0;
           while($row = mysqli_fetch_assoc($result)){ ?>
             <tr>
             <td> <?php echo $row['oid'];   ?> </td>
-            <td> <?php echo $row['product_id'];  ?></td>
+            <td> <?php echo $row['pname'];  ?></td>
             <td> <?php echo $row['user_id'];  ?></td>
           </tr>
          <?php } 
