@@ -1,5 +1,9 @@
 <?php
 require "config.php";
+session_start();
+if (!isset($_SESSION['email'])) {
+    header("location:login.php");
+}
  $sid = $_POST["sid"];
  $pname = $_POST["pname"];
  $price =$_POST["price"];

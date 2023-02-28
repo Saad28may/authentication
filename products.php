@@ -4,7 +4,6 @@ require "config.php";
 session_start();
 
 $email = $_SESSION['email'];
-$password = $_SESSION["password"];
 
 if (!isset($_SESSION['email'])) {
     header("location:login.php");

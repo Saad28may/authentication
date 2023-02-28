@@ -14,45 +14,54 @@
 require "config.php";
 include 'partials/nav.php';
 
-$user_id = $_GET['id'];
-$sql = sprintf("SELECT * FROM `users` WHERE `id` = %d" , $user_id);
-$result = mysqli_query($conn, $sql) or die("Query Unsuccessful");
+session_start();
 
-if(mysqli_num_rows($result)>0){
-while($row = mysqli_fetch_assoc($result)){
-?>
+if(isset($_SESSION['email'])){
+      
+      $user_id = $_GET['id'];
+      $sql = sprintf("SELECT * FROM `users` WHERE `id` = %d" , $user_id);
+      $result = mysqli_query($conn, $sql) or die("Query Unsuccessful");
+
+      if(mysqli_num_rows($result)>0){
+      while($row = mysqli_fetch_assoc($result)){
+      ?>
 
 
-<form action="updatedata.php" method ="POST" >
-  <div class="mb-3">
-  <div class="form-group">
-        <input type="hidden" name="id" value="<?php echo $row['id'];?>">
-      <label for="inputEmail4">Name</label>
-      <input type="text" class="form-control" name="name"value =" <?php echo $row['name']; ?>">
-    </div>
-    <div class ="form-group mt-4">
-    <label for="exampleInputEmail1" >Email address</label>
-    <input type="email" class="form-control" name ="email"value ="<?php echo $row['email'];  ?>">
-    </div>
+      <form action="updatedata.php" method ="POST" >
+        <div class="mb-3">
+        <div class="form-group">
+              <input type="hidden" name="id" value="<?php echo $row['id'];?>">
+            <label for="inputEmail4">Name</label>
+            <input type="text" class="form-control" name="name"value =" <?php echo $row['name']; ?>">
+          </div>
+          <div class ="form-group mt-4">
+          <label for="exampleInputEmail1" >Email address</label>
+          <input type="email" class="form-control" name ="email"value ="<?php echo $row['email'];  ?>">
+          </div>
 
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password"value ="<?php echo $row['password'];  ?>" name ="password">
-  </div>
-  <div class="form-group mb-3">
-  <label class="form-label" for="phone">Phone number</label>
-  <input type="text" id="phone" name ="phone" value="<?php echo $row['phone'];  ?>"/>
- 
-</div>
-  <div class="d-flex justify-content-center">
-  <button type="submit" name = "edit" class="btn btn-primary">Edit</button>
-</div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password"value ="<?php echo $row['password'];  ?>" name ="password">
+        </div>
+        <div class="form-group mb-3">
+        <label class="form-label" for="phone">Phone number</label>
+        <input type="text" id="phone" name ="phone" value="<?php echo $row['phone'];  ?>"/>
+      
+      </div>
+        <div class="d-flex justify-content-center">
+        <button type="submit" name = "edit" class="btn btn-primary">Edit</button>
+      </div>
 
-</form>
-<?php
-}
+      </form>
+      <?php
+      }
+      }
+      else{
+        echo "Data not Found";
+      }
 }
 else{
-   echo "Data not Found";
+  echo "Please login to continue";
 }
+
 ?>

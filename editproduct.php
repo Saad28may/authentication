@@ -13,6 +13,10 @@
 <?php
 require "config.php";
 include 'partials/nav.php';
+session_start();
+if (!isset($_SESSION['email'])) {
+    header("location:login.php");
+}
 
 $product_id = $_GET['sid'];
 $sql = sprintf("SELECT * FROM `products` WHERE `sid` = %d" , $product_id);

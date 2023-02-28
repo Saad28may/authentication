@@ -14,9 +14,8 @@ $num = mysqli_num_rows($result);
 if ($num > 0) {
 
     $data = mysqli_fetch_array($result);
-
+    $_SESSION["userid"] = $data[0];
     $_SESSION["email"] = $email;
-    $_SESSION["password"] = $password;
 
     header('location:display.php');
 

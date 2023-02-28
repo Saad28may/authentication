@@ -1,6 +1,10 @@
 <?php
 include 'partials/nav.php';
 require "config.php";
+session_start();
+if (!isset($_SESSION['email'])) {
+    header("location:login.php");
+}
 
     if(isset($_POST["submit"])){
 
