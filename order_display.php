@@ -27,45 +27,53 @@ if (!isset($_SESSION['email'])) {
     <h2>Users</h2>
   </div>
 
-  <div class="container my-4">
-
-    <table class="table" id="myTable">
-      <thead>
-        <tr>
-          <th scope="col">Order ID</th>
-          <th scope="col">Product Name</th>
-          <th scope="col">User ID</th>
-
-        </tr>
-      </thead>
-      <tbody>
-        <?php 
+         <?php
          $query = "SELECT * FROM `users` WHERE id = '$user_id' ";
          $check = mysqli_query($conn, $query);
          $num = mysqli_num_rows($check);
-         $data = mysqli_fetch_array($check);
-         if($num>0 && $data[5] == "admin"){
-            $sql = "SELECT o.oid , p.pname , o.user_id FROM orders o INNER JOIN products p ON o.product_id = p.sid";
+         $data = mysqli_fetch_array($check);   
+         if($num>0 && $data[5] == "admin"){?>
+            <div class="container my-4">
+        <table class="table" id="myTable">
+        <thead>
+          <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">User Name</th>
+            </tr>
+      </thead><?php 
+            $sql = "SELECT o.oid , p.pname , u.name FROM orders o INNER JOIN products p ON o.product_id = p.sid JOIN users u ON u.id = o.user_id;";
             $result = mysqli_query($conn, $sql);
           $id = 0;
           while($row = mysqli_fetch_assoc($result)){ ?>
+            <tbody>
             <tr>
             <td> <?php echo $row['oid'];   ?> </td>
             <td> <?php echo $row['pname'];  ?></td>
-            <td> <?php echo $row['user_id'];  ?></td>
+            <td> <?php echo $row['name'];  ?></td>
           </tr>
+          </tbody>
           <?php }
          }
-        else{
-          $sql = "SELECT o.oid , p.pname , o.user_id FROM orders o INNER JOIN products p ON o.product_id = p.sid WHERE user_id = '$user_id' ";
+        else{?>
+            <table class="table" id="myTable">
+            <thead>
+              <tr>
+                <th scope="col">Order ID</th>
+                <th scope="col">Product Name</th>
+                </tr>
+      </thead>
+<?php
+          $sql = "SELECT o.oid , p.pname FROM orders o INNER JOIN products p ON o.product_id = p.sid WHERE user_id = '$user_id' ";
           $result = mysqli_query($conn, $sql);
           $id = 0;
           while($row = mysqli_fetch_assoc($result)){ ?>
+            <tbody>
             <tr>
             <td> <?php echo $row['oid'];   ?> </td>
             <td> <?php echo $row['pname'];  ?></td>
-            <td> <?php echo $row['user_id'];  ?></td>
           </tr>
+          </tbody>
          <?php } 
         }
           ?>
