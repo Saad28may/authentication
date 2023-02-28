@@ -15,6 +15,7 @@ $selected_option = $_POST["dropdownvalue"];
 echo "You selected Product ID: " . $selected_option;
 echo "User ID:" . $user_id;
 
+}
 ?>
 
 <!doctype html>
