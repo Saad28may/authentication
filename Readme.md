@@ -6,3 +6,5 @@ Create CRUD for products (simply cope paste) [inside same project]
 user must be login to use the website (done)
 create a page where product shows as dropdown
 and at that page shows product id and user id.
+4th task
+show the order details in next page

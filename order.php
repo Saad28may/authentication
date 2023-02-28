@@ -11,9 +11,19 @@ if (!isset($_SESSION['email'])) {
     header("location:login.php");
 }
 if(isset($_POST['addproduct'])){
-$selected_option = $_POST["dropdownvalue"];
-echo "You selected Product ID: " . $selected_option;
+$product_id = $_POST["dropdownvalue"];
+echo "You selected Product ID: " . $product_id;
 echo "User ID:" . $user_id;
+//INSERT INTO `orders`(`oid`, `product_id`, `user_id`, `created_at`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')
+$sql = "INSERT INTO `orders`(`product_id`, `user_id`, `created_at`) VALUES ('$product_id','$user_id',NOW())";
+$stmt = mysqli_prepare($conn, $sql);
+if (mysqli_stmt_execute($stmt))
+    {
+        header("location: order_display.php");
+    }
+    else{
+        echo "Something went wrong... cannot redirect!";
+    }
 
 }
 ?>
