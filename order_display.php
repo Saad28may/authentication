@@ -40,6 +40,23 @@ if (!isset($_SESSION['email'])) {
       </thead>
       <tbody>
         <?php 
+         $query = "SELECT * FROM `users` WHERE id = '$user_id' ";
+         $check = mysqli_query($conn, $query);
+         $num = mysqli_num_rows($check);
+         $data = mysqli_fetch_array($check);
+         if($num>0 && $data[5] == "admin"){
+            $sql = "SELECT o.oid , p.pname , o.user_id FROM orders o INNER JOIN products p ON o.product_id = p.sid";
+            $result = mysqli_query($conn, $sql);
+          $id = 0;
+          while($row = mysqli_fetch_assoc($result)){ ?>
+            <tr>
+            <td> <?php echo $row['oid'];   ?> </td>
+            <td> <?php echo $row['pname'];  ?></td>
+            <td> <?php echo $row['user_id'];  ?></td>
+          </tr>
+          <?php }
+         }
+        else{
           $sql = "SELECT o.oid , p.pname , o.user_id FROM orders o INNER JOIN products p ON o.product_id = p.sid WHERE user_id = '$user_id' ";
           $result = mysqli_query($conn, $sql);
           $id = 0;
@@ -50,6 +67,7 @@ if (!isset($_SESSION['email'])) {
             <td> <?php echo $row['user_id'];  ?></td>
           </tr>
          <?php } 
+        }
           ?>
 
 
