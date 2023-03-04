@@ -61,7 +61,7 @@ if(isset($_POST["submit"])){
  
 </div>
   <div class="d-flex justify-content-center">
-  <button type="submit" name = "submit" class="btn btn-primary">Submit</button>
+  <button type="submit" name = "submit" class="btn btn-primary">Register</button>
 </div>
 
 </form>

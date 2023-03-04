@@ -15,7 +15,19 @@
         <a class="nav-link" href="products.php">Products</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="order.php">Display Products</a>
+        <a class="nav-link" href="order_display.php">Display Order</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="manage_cart.php">Cart</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="myorders.php">My Orders</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="admin_orderprice.php">Orders Filter</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="admin_allorders.php">All Order</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="logout.php">Logout</a>

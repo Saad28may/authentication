@@ -10,3 +10,11 @@ and at that page shows product id and user id.
 show the order details in next page
 5th task
 Display Product name instead of Product ID
+6th task
+store multiple product ids in single order
+7th Task
+sore the cart item in session and store the order in database
+8th Task
+make a filter for admin to filter order amount
+9th Task
+filter for admin to search order by user name
